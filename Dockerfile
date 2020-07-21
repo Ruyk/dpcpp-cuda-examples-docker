@@ -11,6 +11,7 @@ RUN apt-get install -y software-properties-common
 
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 RUN apt-get update
+RUN rm -rf /usr/local/cuda/include/CL
 
 RUN python3 -m pip install cmake
 

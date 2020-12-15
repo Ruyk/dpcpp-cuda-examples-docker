@@ -15,7 +15,7 @@ RUN rm -rf /usr/local/cuda/include/CL
 
 RUN python3 -m pip install cmake
 
-RUN mkdir /usr/local/dpcpp-cuda && cd /usr/local/dpcpp-cuda && curl -L https://github.com/codeplaysoftware/SYCL-For-CUDA-Examples/releases/download/dec_202015/sycl4cuda.tgz | tar --strip-components=1 -zx
+RUN mkdir /usr/local/dpcpp-cuda && cd /usr/local/dpcpp-cuda && curl -L https://github.com/codeplaysoftware/SYCL-For-CUDA-Examples/releases/download/dec_202015/sycl4cuda_15Dec.tgz | tar --strip-components=1 -zx
 
 ENV PATH=/usr/local/dpcpp-cuda/bin:/usr/local/dpcpp-cuda/include:/usr/local/dpcpp-cuda/lib:${PATH}
 

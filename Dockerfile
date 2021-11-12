@@ -23,10 +23,10 @@ RUN rm -rf /usr/local/cuda/include/CL
 
 RUN python3 -m pip install cmake
 
-RUN mkdir /usr/local/dpcpp-cuda && cd /usr/local/dpcpp-cuda && curl -L https://github.com/joeatodd/SYCL-For-CUDA-Examples/releases/download/nov_2021/dpcpp.tar.gz | tar --strip-components=1 -zx
+RUN mkdir /usr/local/dpcpp-cuda && cd /usr/local/dpcpp-cuda && curl -L https://github.com/codeplaysoftware/SYCL-For-CUDA-Examples/releases/download/nov_2021/dpcpp.tar.gz | tar --strip-components=1 -zx
 
 
-RUN mkdir /usr/local/ompi && cd /usr/local/ompi && curl -L https://github.com/joeatodd/SYCL-For-CUDA-Examples/releases/download/nov_2021/ompi.tar.gz | tar --strip-components=1 -zx
+RUN mkdir /usr/local/ompi && cd /usr/local/ompi && curl -L https://github.com/codeplaysoftware/SYCL-For-CUDA-Examples/releases/download/nov_2021/ompi.tar.gz | tar --strip-components=1 -zx
 
 ENV PATH=/usr/local/dpcpp-cuda/bin:/usr/local/dpcpp-cuda/include:/usr/local/dpcpp-cuda/lib:/usr/local/ompi/bin/:${PATH}
 
@@ -40,5 +40,5 @@ ENV CXX=/usr/local/dpcpp-cuda/bin/clang++
 
 ENV CC=/usr/local/dpcpp-cuda/bin/clang
 
-RUN mkdir /home/examples/ && cd /home/examples/ && git clone https://github.com/joeatodd/SYCL-For-CUDA-Examples.git -b updates-2021
+RUN mkdir /home/examples/ && cd /home/examples/ && git clone https://github.com/codeplaysoftware/SYCL-For-CUDA-Examples.git
 

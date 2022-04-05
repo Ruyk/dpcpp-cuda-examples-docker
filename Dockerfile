@@ -3,6 +3,7 @@ FROM nvidia/cuda:11.3.0-devel-ubuntu20.04
 ARG DEBIAN_FRONTEND=noninteractive
 
 ENV CUDA_ROOT=/usr/local/cuda
+ENV SYCL_ROOT_DIR=/usr/local/dpcpp-cuda
 
 RUN apt-get update
 RUN apt-get install -y git
@@ -20,14 +21,15 @@ RUN apt-get install -y libtool
 
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 RUN apt-get update
+
+# These CL headers interfere with SYCL...
 RUN rm -rf /usr/local/cuda/include/CL
 
 RUN python3 -m pip install cmake
 
 # Set environment variables
 ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64/:/usr/local/dpcpp-cuda/lib:/usr/local/ompi/lib/:${LD_LIBRARY_PATH}
-ENV PATH=/usr/local/dpcpp-cuda/bin:/usr/local/dpcpp-cuda/include:/usr/local/dpcpp-cuda/lib:/usr/local/ompi/bin/:${PATH}
-ENV SYCL_ROOT_DIR=/usr/local/dpcpp-cuda
+ENV PATH=/usr/local/dpcpp-cuda/bin:/usr/local/ompi/bin/:${PATH}
 
 # Get dpcpp source & build it
 RUN mkdir /usr/local/dpcpp-cuda $HOME/llvm-build $HOME/llvm
@@ -38,10 +40,6 @@ RUN mkdir /usr/local/ompi $HOME/hwloc $HOME/ucx $HOME/ompi
 RUN git clone https://github.com/open-mpi/ompi.git $HOME/ompi
 RUN git clone https://github.com/openucx/ucx.git $HOME/ucx
 RUN git clone https://github.com/open-mpi/hwloc.git $HOME/hwloc
-
-# Set C/C++ compilers
-ENV CXX=/usr/local/dpcpp-cuda/bin/clang++
-ENV CC=/usr/local/dpcpp-cuda/bin/clang
 
 # Add build scripts & set permissions
 ADD build_mpi.sh /
@@ -56,6 +54,10 @@ RUN ln -s /usr/lib/x86_64-linux-gnu/libcuda.so.1 /usr/local/cuda/lib64/stubs/lib
 
 RUN /build_dpcpp.sh
 RUN /build_mpi.sh
+
+# Set C/C++ compilers
+ENV CXX=/usr/local/dpcpp-cuda/bin/clang++
+ENV CC=/usr/local/dpcpp-cuda/bin/clang
 
 # Grab the example repo (TODO is this still valid?)
 RUN mkdir /home/examples/ && cd /home/examples/ && git clone https://github.com/codeplaysoftware/SYCL-For-CUDA-Examples.git

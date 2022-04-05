@@ -10,9 +10,7 @@ INSTALL_DIR=/usr/local/dpcpp-cuda
 # Configure & build llvm
 CUDA_LIB_PATH=$CUDA_ROOT/lib64/stubs \
 python3 $SOURCE_DIR/buildbot/configure.py --cuda -t Release --cmake-gen Ninja \
---cmake-opt="-DCUDA_CUDA_LIBRARY:FILEPATH=/usr/local/cuda/targets/x86_64-linux/lib/stubs/" \
 -o $BUILD_DIR
-# --cmake-opt="-DCUDA_INCLUDE_DIRS=/usr/local/cuda/include"
 
 cd $BUILD_DIR
 

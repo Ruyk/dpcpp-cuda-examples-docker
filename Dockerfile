@@ -18,6 +18,7 @@ RUN apt-get install -y libtinfo-dev
 RUN apt-get install -y libncurses6
 RUN apt-get install -y libncurses-dev
 RUN apt-get install -y libtool
+RUN apt-get install -y flex
 
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 RUN apt-get update
@@ -60,6 +61,5 @@ RUN /build_mpi.sh
 ENV CXX=/usr/local/dpcpp-cuda/bin/clang++
 ENV CC=/usr/local/dpcpp-cuda/bin/clang
 
-# Grab the example repo (TODO is this still valid?)
-RUN mkdir /home/examples/ && cd /home/examples/ && git clone https://github.com/codeplaysoftware/SYCL-For-CUDA-Examples.git
-
+# Clean up source code
+RUN rm -rf /root/

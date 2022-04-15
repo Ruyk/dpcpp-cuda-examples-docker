@@ -51,6 +51,7 @@ RUN chmod +x /build_dpcpp.sh
 # Rather hacky fix is to symlink libcuda.so.1 from the right place...
 # https://github.com/Kaggle/docker-python/issues/361#issuecomment-448093930
 RUN ln -s /usr/lib/x86_64-linux-gnu/libcuda.so.1 /usr/local/cuda/lib64/stubs/libcuda.so.1
+RUN ln -s /usr/local/cuda/lib64/stubs/libnvidia-ml.so /usr/local/cuda/lib64/stubs/libnvidia-ml.so.1
 
 RUN /build_dpcpp.sh
 RUN /build_mpi.sh

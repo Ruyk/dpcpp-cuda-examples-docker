@@ -4,6 +4,12 @@
 
 set -x #echo on
 
+export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:$LD_LIBRARY_PATH
+
+export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/usr/local/cuda/lib64:/usr/local/cuda/lib64/stubs:$LIBRARY_PATH
+
+export CPATH=/usr/local/cuda/include
+
 SOURCES_DIR=$HOME
 INSTALL_DIR=/usr/local/ompi
 

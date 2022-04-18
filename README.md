@@ -1,14 +1,14 @@
-DPCPP CUDA Examples Docker Image
+DPCPP for CUDA Image
 =================================
 
-This docker image uses a pre-built DPCPP CUDA compiler to set up an environment that can be used to run the SYCL for CUDA examples in https://github.com/codeplaysoftware/SYCL-For-CUDA-Examples/.
+This docker image provides the DPC++ compiler with CUDA backend support, and a CUDA-aware OpenMPI stack.
 
-The docker image is based on nvidia/cuda:latest, and requires nvidia-docker to run the CUDA applications.
+The docker image is based on nvidia/cuda:latest, and requires nvidia-docker2.
 
 To run the image:
 
 ```
-sudo docker run --gpus all -it ruyman/dpcpp_cuda_examples
+sudo docker run --gpus all -it joeatodd/dpcpp_for_cuda
 ```
 
 # Notes on construction of this image

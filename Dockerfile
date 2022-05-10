@@ -62,4 +62,4 @@ ENV CXX=/usr/local/dpcpp-cuda/bin/clang++
 ENV CC=/usr/local/dpcpp-cuda/bin/clang
 
 # Clean up source code
-RUN rm -rf /root/
+RUN rm -rf /root/*

@@ -63,3 +63,21 @@ ENV CC=/usr/local/dpcpp-cuda/bin/clang
 
 # Clean up source code
 RUN rm -rf /root/*
+
+# Add NVIDIA Nsight Systems & Nsight Compute
+RUN apt-get update -y && \
+     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+         apt-transport-https \
+         ca-certificates \
+         gnupg \
+         wget && \
+     rm -rf /var/lib/apt/lists/*
+
+RUN wget -qO - https://developer.download.nvidia.com/devtools/repos/ubuntu2004/amd64/nvidia.pub | apt-key add - && \
+     echo "deb https://developer.download.nvidia.com/devtools/repos/ubuntu2004/amd64/ /" >> /etc/apt/sources.list.d/nsight.list && \
+     apt-get update -y && \
+     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+         nsight-systems-2021.4.1 nsight-compute-2021.3.1 && \
+     rm -rf /var/lib/apt/lists/*
+
+ENV PATH=/opt/nvidia/nsight-compute/2021.3.1:${PATH}

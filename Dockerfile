@@ -34,7 +34,7 @@ ENV PATH=/usr/local/dpcpp-cuda/bin:/usr/local/ompi/bin/:${PATH}
 
 # Get dpcpp source & build it
 RUN mkdir /usr/local/dpcpp-cuda $HOME/llvm-build $HOME/llvm
-RUN git clone -b sycl-nightly/20220401 https://github.com/intel/llvm.git $HOME/llvm
+RUN git clone -b sycl-nightly/20221109 https://github.com/intel/llvm.git $HOME/llvm
 
 # Get sources for OpenMPI stack & build it
 RUN mkdir /usr/local/ompi $HOME/hwloc $HOME/ucx $HOME/ompi
@@ -77,7 +77,7 @@ RUN wget -qO - https://developer.download.nvidia.com/devtools/repos/ubuntu2004/a
      echo "deb https://developer.download.nvidia.com/devtools/repos/ubuntu2004/amd64/ /" >> /etc/apt/sources.list.d/nsight.list && \
      apt-get update -y && \
      DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-         nsight-systems-2021.4.1 nsight-compute-2021.3.1 && \
+         nsight-systems-2022.4.1 nsight-compute-2022.1.1 && \
      rm -rf /var/lib/apt/lists/*
 
-ENV PATH=/opt/nvidia/nsight-compute/2021.3.1:${PATH}
+ENV PATH=/opt/nvidia/nsight-compute/2022.1.1:/opt/nvidia/nsight-systems/2022.4.1/bin:${PATH}

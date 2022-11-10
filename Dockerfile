@@ -34,7 +34,7 @@ ENV PATH=/usr/local/dpcpp-cuda/bin:/usr/local/ompi/bin/:${PATH}
 
 # Get dpcpp source & build it
 RUN mkdir /usr/local/dpcpp-cuda $HOME/llvm-build $HOME/llvm
-RUN git clone -b sycl-nightly/20220401 https://github.com/intel/llvm.git $HOME/llvm
+RUN git clone -b sycl-nightly/20221109 https://github.com/intel/llvm.git $HOME/llvm
 
 # Get sources for OpenMPI stack & build it
 RUN mkdir /usr/local/ompi $HOME/hwloc $HOME/ucx $HOME/ompi
